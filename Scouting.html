@@ -1,23 +1,29 @@
 <html>
    	<body>
+	<h1>Scouting Form</h1>
 
-	<h4>Pre-Match:</h4>
+	<h2>Pre-Match:</h2>
+
 	Team Number:  <input type="text" name="teamNumber"><br>
-
 	Match Number:  <input type="text" name="teamNumber"><br>
 
-	Starting Position:<br>
-	<input type="radio" name="startingPosition" value="Red 1"> Red 1---
-	Blue 1<input type="radio" name="startingPosition" value="Blue 1"><br>
-	<input type="radio" name="startingPosition" value="Red 2"> Red 2---
-	Blue 2<input type="radio" name="startingPosition" value="Blue 2"><br><br>
+	<fieldset>
+	<legend>Starting Position:</legend>
+	<div>
+	<input type="radio" name="startingPosition" value="Red 1" id="red1"><label for="red1"> Red 1</label> ---
+	<label for="blue1">Blue 1 </label><input type="radio" name="startingPosition" value="Blue 1" id="blue1">
+	</div>
+	<div>
+	<input type="radio" name="startingPosition" value="Red 2" id="red2"><label for="red2"> Red 2</label> ---
+	<label for="blue2">Blue 2 </label><input type="radio" name="startingPosition" value="Blue 2" id="blue2">
+	</div>
+	</fieldset>
 
-	<h4>Autonomous:</h4>
-
-	Jewel: <br>
-	<input type="radio" name="Jewel" value="Yes">Yes<br>
-	<input type="radio" name="Jewel" value="No">No<br>
-	Autonomous Glyph Count:<br>
+	<h2>Autonomous:</h2>
+	<h3>Jewel:</h3>
+	<input type="radio" name="Jewel" value="Yes" id="j-yes"><label for="j-yes">Yes</label><br>
+	<input type="radio" name="Jewel" value="No"><label for="no">No</label><br>
+	<h3>Autonomous Glyph Count:</h3>
 	1<input type="radio" name="glyphA" value="1">
 	2<input type="radio" name="glyphA" value="2">
 	3<input type="radio" name="glyphA" value="3">
@@ -29,7 +35,7 @@
 	Parked in Safe Zone:  <input type="checkbox" name="safeZone" value="Yes"><br><br>
 
 
-	<h4>Driver-Controlled Period:</h4>
+	<h2>Driver-Controlled Period:</h2>
 
 	Tele-Operated + End Game Glyphs:  <input type="number" name="glyphT"><br>
 
@@ -54,7 +60,7 @@
 	1<input type="radio" name="cCiphers" value="1">
 	2<input type="radio" name="cCiphers" value="2"><br><br>
 
-	<h4>End Game:</h4>
+	<h2>End Game:</h2>
 
 	Relic Position:<br>
 	<input type="radio" name="Positions" value="Position 1"> Position 1<br>
@@ -63,7 +69,7 @@
 	Is Relic Standing?<input type="checkbox" name="relicPosition" value="relicPosition"><br>
 	Is Robot on Balancing Stone<input type="checkbox" name="Platform" value="Yes"><br><br>
 
-	<h4>Observations:</h4>
+	<h2>Observations:</h2>
 	<textarea rows="4" cols="50"></textarea><br><br>
 
 	</body>
