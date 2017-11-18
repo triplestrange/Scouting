@@ -31,3 +31,7 @@ input[type="checkbox"] {
 	position: relative;
 	top: 3px;
 }
+
+input[type="submit"] {
+	margin: 20px 0px 30px 0px;
+}
