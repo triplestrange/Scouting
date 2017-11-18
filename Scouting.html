@@ -1,26 +1,34 @@
 <html>
 
-   	<body>
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
 	<h1>Scouting Form</h1>
 
 	<h2>Pre-Match:</h2>
 
 	<fieldset id="starting-numbers">
 	<legend>Numbers</legend>
-	Team Number:  <input type="text" name="teamNumber"><br>
-	Match Number:  <input type="text" name="teamNumber"><br>
+		<span>
+			<label for="team-num">Team Number: </label><input type="text" name="teamNumber">
+		</span>
+		<span>
+			<label for="match-num">Match Number: </label><input type="text" name="matchNumber">
+		</span>
 	</fieldset>
 
 	<fieldset id="starting-pos">
 	<legend>Starting Position</legend>
-		<div>
+		<span>
 			<input type="radio" name="startingPosition" value="Red 1" id="red1"><label for="red1"> Red 1</label> ---
 			<label for="blue1">Blue 1 </label><input type="radio" name="startingPosition" value="Blue 1" id="blue1">
-		</div>
-		<div>
+		</span>
+		<span>
 			<input type="radio" name="startingPosition" value="Red 2" id="red2"><label for="red2"> Red 2</label> ---
 			<label for="blue2">Blue 2 </label><input type="radio" name="startingPosition" value="Blue 2" id="blue2">
-		</div>
+		</span>
 	</fieldset>
 
 	<h2>Autonomous:</h2>
@@ -51,15 +59,19 @@
 			<option value="10">10</option>
 		</select>
 	</div>
-		Is Glyph in Cryptobox Key?<input type="checkbox" name="Key" value="Yes">
-		Parked in Safe Zone:  <input type="checkbox" name="safeZone" value="Yes">
+		<span>
+			Glyph in Cryptobox Key: <input type="checkbox" name="Key" value="Yes">
+		</span>
+		<span>
+			Parked in Safe Zone:  <input type="checkbox" name="safeZone" value="Yes">
+		</span>
 	</fieldset>
 
 	<h2>Teleop:</h2>
 
 	<fieldset id="tele-glyphs">
 	<legend>Teleop Glyphs</legend>
-		<input type="number" name="glyphT"><br>
+		<input type="number" name="glyphT" min="0">
 	</fieldset>
 
 	<fieldset id="teleop-cryptobox">
@@ -102,15 +114,19 @@
 	<fieldset id="relic">
 	<legend>Relics</legend>
 		<div id="relic-pos">
-        	        Relic Position: <select id="relic-pos-select">
-                	        <option value="1">1</option>
+			Relic Position: <select id="relic-pos-select">
+				<option value="1">1</option>
 				<option value="2">2</option>
-                        	<option value="3">3</option>
-                	</select>
-        	</div>
-	Is Relic Standing?<input type="checkbox" name="relicPosition" value="relicPosition">
-	Is Robot on Balancing Stone<input type="checkbox" name="Platform" value="Yes">
+				<option value="3">3</option>
+			</select>
+		</div>
+	<span>
+		Relic Standing: <input type="checkbox" name="relicPosition" value="relicPosition">
+	</span>
+	<span>
+		Robot on Balancing Stone: <input type="checkbox" name="Platform" value="Yes">
+	</span>
 	</fieldset>
 
-	</body>
+</body>
 </html>
