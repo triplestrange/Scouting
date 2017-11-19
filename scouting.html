@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -38,7 +38,7 @@
 
 	<fieldset id="jewel">
 	<legend>Jewel</legend>
-		<select name="jewelMove" id="auto-jewel">
+		<select name="jewelMov" id="auto-jewel">
 			<option value="no-j">No jewel removed</option>
 			<option value="in-j">Incorrect jewel removed</option>
 			<option value="co-j">Correct jewel removed</option>
@@ -51,10 +51,10 @@
 			Number of Glyphs: <input type="number" name="glyphA" min="0">
 		</span>
 		<span>
-			Glyph in Cryptobox Key: <input type="checkbox" name="key" value="yes">
+			Glyph in Cryptobox Key: <input type="checkbox" name="cryptoKey" value="true">
 		</span>
 		<span>
-			Parked in Safe Zone:  <input type="checkbox" name="safeZone" value="yes">
+			Parked in Safe Zone:  <input type="checkbox" name="safeZone" value="true">
 		</span>
 	</fieldset>
 
@@ -104,18 +104,18 @@
 
 	<fieldset id="relic">
 	<legend>Relics</legend>
-		<div id="relic-pos">
-			Relic Position: <select name="relic-pos" id="relic-pos-select">
+		<div id="relicPos">
+			Relic Position: <select name="relicPos" id="relicPos-select">
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
 			</select>
 		</div>
 	<span>
-		Relic Standing: <input type="checkbox" name="relicStand" value="yes">
+		Relic Standing: <input type="checkbox" name="relicStand" value="true">
 	</span>
 	<span>
-		Robot on Balancing Stone: <input type="checkbox" name="platform" value="yes">
+		Robot on Balancing Stone: <input type="checkbox" name="platform" value="true">
 	</span>
 	</fieldset>
 
