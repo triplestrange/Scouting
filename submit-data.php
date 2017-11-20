@@ -1,15 +1,16 @@
 <?php
 
 $servername = "localhost";
-$username = "scouting";
-$password = "";
-$dbname = "scouting";
+$username = "sql-user";
+$password = "sql-password";
+$dbname = "sql-database";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
+
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+	die("Connection failed: " . $conn->connect_error);
 }
 
 // Read POST values
@@ -17,6 +18,16 @@ if ($conn->connect_error) {
 $teamNum = $_POST['teamNum'];
 $matchNum = $_POST['matchNum'];
 $startPos = $_POST['startPos'];
+
+// End if no match number
+if ($matchNum === "") {
+	die("ERROR: No match number");
+}
+
+// End if no team number
+if ($teamNum === "") {
+        die("ERROR: No team number");
+}
 
 // Jewel removal
 $jewelMov = $_POST['jewelMov'];
@@ -46,7 +57,7 @@ $relicStand = $_POST['relicStand'];
 $platform = $_POST['platform'];
 
 // Define match number based table creation
-$table = "CREATE TABLE IF NOT EXISTS `team".$teamNum."_match".$matchNum."` (
+$table = "CREATE TABLE IF NOT EXISTS `match_".$matchNum."` (
 teamNum INT,
 position TEXT,
 jewel TEXT,
@@ -64,11 +75,13 @@ balance_platform TEXT
 
 // Create table for match if necessary
 if ($conn->query($table) === TRUE) {
-	echo "Table created successfully";
+	echo "Table: OK";
 }
 
+echo nl2br ("\n");
+
 // Define data write function
-$data = "INSERT INTO `team".$teamNum."_match".$matchNum."` ". "(
+$data = "INSERT INTO `match_".$matchNum."` ". "(
 teamNum,
 position,
 jewel,
