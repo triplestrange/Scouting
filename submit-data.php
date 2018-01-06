@@ -33,38 +33,38 @@ if ($teamNum === "") {
 $autoline = $_POST['autoline'];
 
 // Autonomous switch
-$auto-switch = $_POST['auto-switch'];
+$autoSwitch = $_POST['autoSwitch'];
 
 // Autonomous scale
-$auto-scale = $_POST['auto-scale'];
+$autoScale = $_POST['autoScale'];
 
 // Teleop switch
-$tele-switch = $_POST['tele-switch'];
+$teleSwitch = $_POST['teleSwitch'];
 
 // Teleop scale
-$tele-scale = $_POST['tele-scale'];
+$teleScale = $_POST['teleScale'];
 
 // Cubes returned
-$return-cubes = $_POST['return-cubes'];
+$returnCubes = $_POST['returnCubes'];
 
 // Was levitate used
 $levitate = $_POST['levitate'];
 
 // Parked or climbed
-$end-pos = $_POST['end-pos'];
+$endPos = $_POST['endPos'];
 
 // Define match number based table creation
 $table = "CREATE TABLE IF NOT EXISTS `match_".$matchNum."` (
 teamNum INT,
 position TEXT,
-auto-line TEXT,
-auto-switch INT,
-auto-scale INT,
-tele-switch INT,
-tele-scale INT,
-return-cubes INT,
+autoline TEXT,
+autoSwitch INT,
+autoScale INT,
+teleSwitch INT,
+teleScale INT,
+returnCubes INT,
 levitate TEXT,
-end-pos TEXT
+endPos TEXT
 )";
 
 // Create table for match if necessary
@@ -78,25 +78,25 @@ echo nl2br ("\n");
 $data = "INSERT INTO `match_".$matchNum."` ". "(
 teamNum,
 position,
-auto-line,
-auto-switch,
-auto-scale,
-tele-switch,
-tele-scale,
-return-cubes,
+autoLine,
+autoSwitch,
+autoScale,
+teleSwitch,
+teleScale,
+returnCubes,
 levitate,
-end-pos
+endPos
 ) ". "VALUES(
 '$teamNum',
 '$startPos',
-'$auto-line',
-'$auto-switch',
-'$auto-scale',
-'$tele-switch',
-'$tele-scale',
-'$return-cubes',
+'$autoLine',
+'$autoSwitch',
+'$autoScale',
+'$teleSwitch',
+'$teleScale',
+'$returnCubes',
 '$levitate',
-'$end-pos'
+'$endPos'
 )";
 
 // Write data to table
