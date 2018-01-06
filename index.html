@@ -10,17 +10,17 @@
 
 <form action="submit-data.php" method="post" accept-charset="utf-8">
 
-	<h1>Scouting Form</h1>
+	<h1>FIRST Power Up Scouting Form</h1>
 
 	<h2>Pre-Match:</h2>
 
 	<fieldset id="starting-numbers">
 	<legend>Numbers</legend>
 		<span>
-			<label for="team-num">Team Number: </label><input type="text" name="teamNum">
+			<label for="team-num">Team Number: </label><input type="text" name="teamNum" required>
 		</span>
 		<span>
-			<label for="match-num">Match Number: </label><input type="text" name="matchNum">
+			<label for="match-num">Match Number: </label><input type="text" name="matchNum" required>
 		</span>
 	</fieldset>
 
@@ -35,96 +35,59 @@
 			<input type="radio" name="startPos" value="red_2" id="red2"><label for="red2"> Red 2</label> ---
 			<label for="blue2">Blue 2 </label><input type="radio" name="startPos" value="blue_2" id="blue2">
 		</span>
+		<span>
+			<input type="radio" name="startPos" value="red_3" id="red3"><label for="red3"> Red 3</label> ---
+			<label for="blue3">Blue 3 </label><input type="radio" name="startPos" value="blue_3" id="blue3">
+		</span>
 	</fieldset>
 
 	<h2>Autonomous:</h2>
 
-	<fieldset id="jewel">
-	<legend>Jewel</legend>
-		<select name="jewelMov" id="auto-jewel">
-			<option value="none">No jewel removed</option>
-			<option value="incorrect">Incorrect jewel removed</option>
-			<option value="correct">Correct jewel removed</option>
-		</select>
+	<fieldset id="automove">
+	<legend>Autonomous Movement</legend>
+		<input type="hidden" name="autoline" value="false">
+		<label for="autoline">Robot across Autonomous Movement Line: </label><input type="checkbox" name="autoline" id="autoline" value="true">
 	</fieldset>
 
-	<fieldset id="auto-glyph">
-	<legend>Autonomous Glyph Count</legend>
-		<span>
-			Number of Glyphs: <input type="number" name="glyphA" min="0" value="0">
-		</span>
-		<span>
-			<input type="hidden" name="cryptoKey" value="false">
-			<label for="cryptoKey">Glyph in Cryptobox Key: </label><input type="checkbox" name="cryptoKey" id="cryptoKey" value="true">
-		</span>
-		<span>
-			<input type="hidden" name="safeZone" value="false">
-			<label for="safeZone">Parked in Safe Zone: </label><input type="checkbox" name="safeZone" id="safeZone" value="true">
-		</span>
+	<fieldset id="auto-switch">
+	<legend>Autonomous Switch Cubes</legend>
+		Power Cubes on switch: <input type="number" name="auto-switch" min="0" value="0">
 	</fieldset>
 
-	<h2>Teleop:</h2>
-
-	<fieldset id="tele-glyphs">
-	<legend>Teleop Glyphs</legend>
-		<input type="number" name="glyphT" min="0" value="0">
+	<fieldset id="auto-scale">
+	<legend>Autonomous Scale Cubes</legend>
+		Power Cubes on scale: <input type="number" name="auto-scale" min="0" value="0">
 	</fieldset>
 
-	<fieldset id="teleop-cryptobox">
-	<legend>Cryptobox</legend>
-	<div id="crypto-rows">
-		Completed Cryptobox Rows: <select name="cryptoR" id="crypto-rows-select">
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-		</select>
-	</div>
-	<div id="crypto-columns">
-		Completed Cryptobox Columns: <select name="cryptoC" id="crypto-columns-select">
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-		</select>
-	</div>
-	<div id="ciphers">
-		Completed Ciphers: <select name="ciphers" id="ciphers-select">
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-		</select>
-	</div>
+<h2>Teleop:</h2>
+
+	<fieldset id="tele-switch">
+	<legend>Switch Cubes</legend>
+		Power Cubes on switch: <input type="number" name="tele-switch" min="0" value="0">
+	</fieldset>
+
+	<fieldset id="tele-scale">
+	<legend>Scale Cubes</legend>
+		Power Cubes on scale: <input type="number" name="tele-scale" min="0" value="0">
+	</fieldset>
+
+	<fieldset id="power-up">
+	<legend>Power Ups</legend>
+		Power Cubes returned: <input type="number" name="return-cubes" min="0" value="0">
+		<span>
+			<input type="hidden" name="levitate" value="false">
+			<label for="levitate">Robot used levitate: </label><input type="checkbox" name="levitate" id="levitate" value="true">
+		</span>
 	</fieldset>
 
 	<h2>End Game:</h2>
 
-	<fieldset id="relic">
-	<legend>Relics</legend>
-		<div id="relicPos">
-			Relic Position: <select name="relicPos" id="relicPos-select">
-				<option value="0">None</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-			</select>
-		</div>
-	<span>
-		<input type="hidden" name="relicStand" value="false">
-		<label for="relicStand">Relic Standing: </label><input type="checkbox" name="relicStand" id="relicStand" value="true">
-	</span>
-	<span>
-		<input type="hidden" name="platform" value="false">
-		<label for="platform">Robot on Balancing Stone: </label><input type="checkbox" name="platform" id="platform" value="true">
-	</span>
+	<fieldset>
+		Robot end position: <select name="end-pos" id="end-pos">
+			<option value="none">Neither</option>
+			<option value="park">Parked</option>
+			<option value="climb">Climbed</option>
+		</select>
 	</fieldset>
 
 	<input type="submit" value="Submit Data">

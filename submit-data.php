@@ -29,48 +29,40 @@ if ($teamNum === "") {
         die("ERROR: No team number");
 }
 
-// Jewel removal
-$jewelMov = $_POST['jewelMov'];
+// Autonomous movement
+$autoline = $_POST['autoline'];
 
-// Autonomous glyph count
-$glyphA = $_POST['glyphA'];
-// Teleop glyph count
-$glyphT = $_POST['glyphT'];
-// Glyph in cryptobox key?
-$cryptoKey = $_POST['cryptoKey'];
+// Autonomous switch
+$auto-switch = $_POST['auto-switch'];
+// Autonomous scale
+$auto-scale = $_POST['auto-scale'];
 
-// Parked in the save zone? (yes/no)
-$safeZone = $_POST['safeZone'];
+// Teleop switch
+$tele-switch = $_POST['tele-switch'];
+// Teleop scale
+$tele-scale = $_POST['tele-scale'];
 
-// Cryptobox Rows and Columns
-$cryptoR = $_POST['cryptoR'];
-$cryptoC = $_POST['cryptoC'];
+// Cubes returned
+$return-cubes = $_POST['return-cubes'];
 
-// Completed cipher count
-$ciphers = $_POST['ciphers'];
+//Was levitate used
+$levitate = $_POST['levitate'];
 
-// Relic position and standing
-$relicPos = $_POST['relicPos'];
-$relicStand = $_POST['relicStand'];
-
-// Balancing stone
-$platform = $_POST['platform'];
+// Parked or climbed
+$end-pos = $_POST['end-pos'];
 
 // Define match number based table creation
 $table = "CREATE TABLE IF NOT EXISTS `match_".$matchNum."` (
 teamNum INT,
 position TEXT,
-jewel TEXT,
-auto_glyphs INT,
-cryptobox_key TEXT,
-safe_zone TEXT,
-tele_glyphs INT,
-crypto_rows INT,
-crypto_columns INT,
-ciphers INT,
-relic_position INT,
-relic_standing TEXT,
-balance_platform TEXT
+auto-line TEXT,
+auto-switch INT,
+auto-scale INT,
+tele-switch INT,
+tele-scale INT,
+return-cubes INT,
+levitate TEXT,
+end-pos TEXT
 )";
 
 // Create table for match if necessary
@@ -84,31 +76,25 @@ echo nl2br ("\n");
 $data = "INSERT INTO `match_".$matchNum."` ". "(
 teamNum,
 position,
-jewel,
-auto_glyphs,
-cryptobox_key,
-safe_zone,
-tele_glyphs,
-crypto_rows,
-crypto_columns,
-ciphers,
-relic_position,
-relic_standing,
-balance_platform
+auto-line,
+auto-switch,
+auto-scale,
+tele-switch,
+tele-scale,
+return-cubes,
+levitate,
+end-pos
 ) ". "VALUES(
 '$teamNum',
 '$startPos',
-'$jewelMov',
-'$glyphA',
-'$cryptoKey',
-'$safeZone',
-'$glyphT',
-'$cryptoR',
-'$cryptoC',
-'$ciphers',
-'$relicPos',
-'$relicStand',
-'$platform'
+'$auto-line',
+'$auto-switch',
+'$auto-scale',
+'$tele-switch',
+'$tele-scale',
+'$return-cubes',
+'$levitate',
+'$end-pos'
 )";
 
 // Write data to table
