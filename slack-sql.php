@@ -1,8 +1,7 @@
+<?php
 // SQL query script
 // Original base script at:
 // https://github.com/PenguinSnail/mysql-slack
-
-<?php
 
 // Grab some of the values from the slash command, create vars for post back to Slack
 $command = $_POST['command'];
@@ -13,7 +12,6 @@ $token = $_POST['token'];
 if($token != 'XXXXXXXXXX'){
     $msg = "The token for the slash command doesn't match. Check your script.";
     die($msg);
-    echo $msg;
 }
 
 // Extract operation from passed text
@@ -29,11 +27,13 @@ $args = implode(' ', $words);
 if ($oper == "query") {
     $query = $args;
 } elseif ($oper == "match") {
-    $query = "select * from match_" . $args;
+	$args = strtok($args, " ");
+	$query = "select * from match_" . $args;
 } elseif ($oper == "team") {
-    $query = "select * from team_" . $args;
+	$args = strtok($args, " ");
+	$query = "select * from team_" . $args;
 } else {
-    die("ERROR: Operation not recognized");
+	die("ERROR: Operation not recognized");
 }
 
 // MySQL vars
@@ -51,7 +51,9 @@ if ($conn->connect_error) {
 }
 
 // Run query
-$result = $conn->query($query);
+if (!$result = $conn->query($query)) {
+	die("ERROR: " . $conn->error);
+}
 
 // Return data
 $i = 0;
