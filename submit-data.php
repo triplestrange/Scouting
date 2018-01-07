@@ -30,7 +30,7 @@ if ($teamNum === "") {
 }
 
 // Autonomous movement
-$autoline = $_POST['autoline'];
+$autoLine = $_POST['autoLine'];
 
 // Autonomous switch
 $autoSwitch = $_POST['autoSwitch'];
@@ -57,7 +57,7 @@ $endPos = $_POST['endPos'];
 $table = "CREATE TABLE IF NOT EXISTS `match_".$matchNum."` (
 teamNum INT,
 position TEXT,
-autoline TEXT,
+autoLine TEXT,
 autoSwitch INT,
 autoScale INT,
 teleSwitch INT,
