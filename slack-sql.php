@@ -29,6 +29,13 @@ $words = explode(' ', $text);
 $words = array_slice($words, 1);
 $args = implode(' ', $words);
 
+// Check for CSV option
+if (strtolower(array_pop(explode(' ', $args))) == "csv") {
+	$csv = "true";
+} else {
+	$csv = "false";
+}
+
 // Determine operation and set query
 if ($oper == "query") {
 	if (strtok($args, " ") == "drop") {
@@ -77,20 +84,42 @@ if ($result == "") {
 
 // Return data
 $i = 0;
-while($row = $result->fetch_assoc())
-{
-    if ($i == 0) {
-      $i++;
-      foreach ($row as $key => $value) {
-        echo str_pad($key,11," ");
-	echo " | ";
-      }
-    }
-echo ("\n");
-	foreach ($row as $value) {
-		echo str_pad($value,15," ");
-		echo " | ";
+if ($csv == "true") {
+	echo "Here is your CSV:";
+	echo ("\n");
+	echo ("\n");
+	$i = 0;
+	while($row = $result->fetch_assoc()) {
+    	if ($i == 0) {
+      		$i++;
+      		foreach ($row as $key => $value) {
+        		echo $key;
+	    		echo ",";
+      		}
+    	}
+		echo ("\n");
+		foreach ($row as $value) {
+			echo $value;
+			echo ",";
+		}
 	}
+	die();
+} else {
+	while($row = $result->fetch_assoc())
+	{
+		if ($i == 0) {
+			$i++;
+      		foreach ($row as $key => $value) {
+        		echo str_pad($key,11," ");
+				echo " | ";
+			}
+		}
+		echo ("\n");
+		foreach ($row as $value) {
+			echo str_pad($value,15," ");
+			echo " | ";
+		}
+	}
+	die();
 }
-
 ?>
