@@ -65,7 +65,7 @@ if ($oper == "query") {
 	}
 } elseif ($oper == "average") {
 	$args = preg_replace("/[^0-9,.]/", "", strtok($args, " "));
-	$query = "select (select avg(autoSwitch) from team_1533), (select avg(autoScale) from team_1533), (select avg(teleSwitch) from team_1533), (select avg(teleScale), (select avg(returnCubes)) from team_" . $args;
+	$query = "select (select avg(autoSwitch) from team_" . $args . "), (select avg(autoScale) from team_" . $args . "), (select avg(teleSwitch) from team_" . $args . "), (select avg(teleScale) from team_" . $args . "), (select avg(returnCubes) from team_" . $args . ")";
 } else {
 	die("List/Match/Team/Notes/Query - List tables/Match data/Team data/Team notes/Query database");
 }
