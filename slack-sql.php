@@ -30,7 +30,9 @@ $words = array_slice($words, 1);
 $args = implode(' ', $words);
 
 // Determine operation and set query
-if ($oper == "query") {
+if ($oper == "help") {
+	die("List/Match/Team/Notes/Query - List tables/Match data/Team data/Team notes/Query database");
+} elseif ($oper == "query") {
     $query = $args;
 } elseif ($oper == "match") {
 	$args = strtok($args, " ");
@@ -43,11 +45,11 @@ if ($oper == "query") {
 	$query = "select * from notes_" . $args;
 } elseif ($oper == "list") {
 	$args = strtok($args, " ");
-	if (strpos($args, team)) {
+	if (strpos($args, "team") !== false) {
 		$query = "show tables like 'team\_%'";
-	} elseif (strpos($args, match)) {
-		$query = "show tables like 'match\_%'";
-	} elseif (strpos($args, note)) {
+	} elseif (strpos($args, "match") !== false) {
+		$query = "show tables lzike 'match\_%'";
+	} elseif (strpos($args, "note") !==false) {
 		$query = "show tables like 'notes\_%'";
 	} else {
 		$query = "show tables";
