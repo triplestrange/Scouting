@@ -30,9 +30,7 @@ $words = array_slice($words, 1);
 $args = implode(' ', $words);
 
 // Determine operation and set query
-if ($oper == "help") {
-	die("List/Match/Team/Notes/Query - List tables/Match data/Team data/Team notes/Query database");
-} elseif ($oper == "query") {
+if ($oper == "query") {
     $query = $args;
 } elseif ($oper == "match") {
 	$args = strtok($args, " ");
@@ -55,7 +53,7 @@ if ($oper == "help") {
 		$query = "show tables";
 	}
 } else {
-	die("ERROR: Operation not recognized");
+	die("List/Match/Team/Notes/Query - List tables/Match data/Team data/Team notes/Query database");
 }
 
 // Check connection
