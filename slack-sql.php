@@ -41,6 +41,15 @@ if ($oper == "query") {
 } elseif ($oper == "notes") {
 	$args = strtok($args, " ");
 	$query = "select * from notes_" . $args;
+} elseif ($oper == "list") {
+	$args = strtok($args, " ");
+	if (strpos($args, team)) {
+		$query = "show tables like 'team\_%'"
+	} elseif (strpos($args, match)) {
+		$query = "show tables like 'match\_%'"
+	} elseif (strpos($args, note)) {
+		$query = "show tables like 'notes\_%'"
+	} else {$query = "show tables"}
 } else {
 	die("ERROR: Operation not recognized");
 }
