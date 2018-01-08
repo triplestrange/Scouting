@@ -26,6 +26,10 @@
 
 - Manually specify a query for the database
 
+### Average `<Team Number>`
+
+- Average power cube data for a specific team over all of their matches
+
 ### CSV Exporting
 
 - Append "csv" to the end of any command to have it output as CSV formatted text
