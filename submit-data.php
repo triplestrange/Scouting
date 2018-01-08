@@ -15,9 +15,10 @@ if ($conn->connect_error) {
 
 // Read POST values
 // Initial numbers
-$teamNum = $_POST['teamNum'];
-$matchNum = $_POST['matchNum'];
-$startPos = $_POST['startPos'];
+// Only allow numeric characters
+$teamNum = preg_replace("/[^0-9,.]/", "", $_POST['teamNum']);
+$matchNum = preg_replace("/[^0-9,.]/", "", $_POST['matchNum']);
+$startPos = preg_replace("/[^0-9,.]/", "", $_POST['startPos']);
 
 // End if no match number
 if ($matchNum === "") {
@@ -33,19 +34,19 @@ if ($teamNum === "") {
 $autoLine = $_POST['autoLine'];
 
 // Autonomous switch
-$autoSwitch = $_POST['autoSwitch'];
+$autoSwitch = preg_replace("/[^0-9,.]/", "", $_POST['autoSwitch']);
 
 // Autonomous scale
-$autoScale = $_POST['autoScale'];
+$autoScale = preg_replace("/[^0-9,.]/", "", $_POST['autoScale']);
 
 // Teleop switch
-$teleSwitch = $_POST['teleSwitch'];
+$teleSwitch = preg_replace("/[^0-9,.]/", "", $_POST['teleSwitch']);
 
 // Teleop scale
-$teleScale = $_POST['teleScale'];
+$teleScale = preg_replace("/[^0-9,.]/", "", $_POST['teleScale']);
 
 // Cubes returned
-$returnCubes = $_POST['returnCubes'];
+$returnCubes = preg_replace("/[^0-9,.]/", "", $_POST['returnCubes']);
 
 // Was levitate used
 $levitate = $_POST['levitate'];

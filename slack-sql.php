@@ -31,15 +31,19 @@ $args = implode(' ', $words);
 
 // Determine operation and set query
 if ($oper == "query") {
-    $query = $args;
+	if (strtok($args, " ") == "drop") {
+		die("I'm afraid I can't let you do that...");
+	} else {
+		$query = $args;
+	}
 } elseif ($oper == "match") {
-	$args = strtok($args, " ");
+	$args = preg_replace("/[^0-9,.]/", "", strtok($args, " "));
 	$query = "select * from match_" . $args;
 } elseif ($oper == "team") {
-	$args = strtok($args, " ");
+	$args = preg_replace("/[^0-9,.]/", "", strtok($args, " "));
 	$query = "select * from team_" . $args;
 } elseif ($oper == "notes") {
-	$args = strtok($args, " ");
+	$args = preg_replace("/[^0-9,.]/", "", strtok($args, " "));
 	$query = "select * from notes_" . $args;
 } elseif ($oper == "list") {
 	$args = strtok($args, " ");
