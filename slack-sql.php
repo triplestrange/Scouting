@@ -8,6 +8,12 @@ $command = $_POST['command'];
 $text = $_POST['text'];
 $token = $_POST['token'];
 
+// MySQL vars
+$servername = "localhost";
+$username = "username";
+$password = "password";
+$dbname = "scouting";
+
 // Check the token and make sure the request is from our team
 if($token != 'XXXXXXXXXX'){
     $msg = "The token for the slash command doesn't match. Check your script.";
@@ -23,7 +29,7 @@ $words = explode(' ', $text);
 $words = array_slice($words, 1);
 $args = implode(' ', $words);
 
-// If operation is "query" set query to $args
+// Determine operation and set query
 if ($oper == "query") {
     $query = $args;
 } elseif ($oper == "match") {
@@ -32,20 +38,15 @@ if ($oper == "query") {
 } elseif ($oper == "team") {
 	$args = strtok($args, " ");
 	$query = "select * from team_" . $args;
+} elseif ($oper == "notes") {
+	$args = strtok($args, " ");
+	$query = "select * from notes_" . $args;
 } else {
 	die("ERROR: Operation not recognized");
 }
 
-// MySQL vars
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "database";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
 // Check connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
