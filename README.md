@@ -25,3 +25,7 @@
 ### Query `<SQL Query>`
 
 - Manually specify a query for the database
+
+### CSV Exporting
+
+- Append "csv" to the end of any command to have it output as CSV formatted text
