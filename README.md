@@ -22,13 +22,13 @@
 
 - Show optional notes by team
 
-### Query `<SQL Query>`
-
-- Manually specify a query for the database
-
 ### Average `<Team Number>`
 
 - Average power cube data for a specific team over all of their matches
+
+### Query `<SQL Query>`
+
+- Manually specify a query for the database
 
 ### CSV Exporting
 
