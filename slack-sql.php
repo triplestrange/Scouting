@@ -63,6 +63,9 @@ if ($oper == "query") {
 	} else {
 		$query = "show tables";
 	}
+} elseif ($oper == "average") {
+	$args = preg_replace("/[^0-9,.]/", "", strtok($args, " "));
+	$query = "select (select avg(autoSwitch) from team_1533), (select avg(autoScale) from team_1533), (select avg(teleSwitch) from team_1533), (select avg(teleScale), (select avg(returnCubes)) from team_" . $args;
 } else {
 	die("List/Match/Team/Notes/Query - List tables/Match data/Team data/Team notes/Query database");
 }
@@ -93,7 +96,12 @@ if ($csv == "true") {
     	if ($i == 0) {
       		$i++;
       		foreach ($row as $key => $value) {
-        		echo $key;
+				if ($oper == "average") {
+					$key = substr($key, 1, -1);
+					preg_match( '!\(([^\)]+)\)!', $key, $match);
+					$key = $match[1];
+				}
+				echo $key;
 	    		echo ",";
       		}
     	}
@@ -110,6 +118,11 @@ if ($csv == "true") {
 		if ($i == 0) {
 			$i++;
       		foreach ($row as $key => $value) {
+				if ($oper == "average") {
+					$key = substr($key, 1, -1);
+					preg_match( '!\(([^\)]+)\)!', $key, $match);
+					$key = $match[1];
+				}
         		echo str_pad($key,11," ");
 				echo " | ";
 			}
