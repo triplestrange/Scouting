@@ -71,6 +71,10 @@ if (!$result = $conn->query($query)) {
 	die("ERROR: " . $conn->error);
 }
 
+if ($result == "") {
+	die("No data found :(");
+}
+
 // Return data
 $i = 0;
 while($row = $result->fetch_assoc())
