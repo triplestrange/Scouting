@@ -46,7 +46,7 @@ if ($oper == "query") {
 	if (strpos($args, "team") !== false) {
 		$query = "show tables like 'team\_%'";
 	} elseif (strpos($args, "match") !== false) {
-		$query = "show tables lzike 'match\_%'";
+		$query = "show tables like 'match\_%'";
 	} elseif (strpos($args, "note") !==false) {
 		$query = "show tables like 'notes\_%'";
 	} else {
