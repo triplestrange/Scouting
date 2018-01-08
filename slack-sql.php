@@ -44,12 +44,14 @@ if ($oper == "query") {
 } elseif ($oper == "list") {
 	$args = strtok($args, " ");
 	if (strpos($args, team)) {
-		$query = "show tables like 'team\_%'"
+		$query = "show tables like 'team\_%'";
 	} elseif (strpos($args, match)) {
-		$query = "show tables like 'match\_%'"
+		$query = "show tables like 'match\_%'";
 	} elseif (strpos($args, note)) {
-		$query = "show tables like 'notes\_%'"
-	} else {$query = "show tables"}
+		$query = "show tables like 'notes\_%'";
+	} else {
+		$query = "show tables";
+	}
 } else {
 	die("ERROR: Operation not recognized");
 }
