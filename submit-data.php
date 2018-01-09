@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 // Only allow numeric characters
 $teamNum = preg_replace("/[^0-9,.]/", "", $_POST['teamNum']);
 $matchNum = preg_replace("/[^0-9,.]/", "", $_POST['matchNum']);
-$startPos = preg_replace("/[^0-9,.]/", "", $_POST['startPos']);
+$startPos = $_POST['startPos'];
 
 // End if no match number
 if ($matchNum === "") {
