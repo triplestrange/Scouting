@@ -3,6 +3,10 @@
 // Original base script at:
 // https://github.com/PenguinSnail/mysql-slack
 
+// Domain the database and scouting app are running on
+// Must include the path to the scouting app scripts and a trailing slash
+$domain = "http://domain.site/scouting/";
+
 // Grab some of the values from the slash command, create vars for post back to Slack
 $command = $_POST['command'];
 $text = $_POST['text'];
@@ -28,13 +32,6 @@ $oper = strtolower($oper);
 $words = explode(' ', $text);
 $words = array_slice($words, 1);
 $args = implode(' ', $words);
-
-// Check for CSV option
-if (strtolower(array_pop(explode(' ', $args))) == "csv") {
-	$csv = "true";
-} else {
-	$csv = "false";
-}
 
 // Determine operation and set query
 if ($oper == "query") {
@@ -85,54 +82,73 @@ if ($result == "") {
 	die("No data found :(");
 }
 
-// Return data
+// create csv contents
 $i = 0;
-if ($csv == "true") {
-	echo "Here is your CSV:";
-	echo ("\n");
-	echo ("\n");
-	$i = 0;
-	while($row = $result->fetch_assoc()) {
-    	if ($i == 0) {
-      		$i++;
-      		foreach ($row as $key => $value) {
-				if ($oper == "average") {
-					$key = substr($key, 1, -1);
-					preg_match( '!\(([^\)]+)\)!', $key, $match);
-					$key = $match[1];
-				}
-				echo $key;
-	    		echo ",";
-      		}
-    	}
-		echo ("\n");
-		foreach ($row as $value) {
-			echo $value;
-			echo ",";
-		}
-	}
-	die();
-} else {
-	while($row = $result->fetch_assoc())
-	{
-		if ($i == 0) {
-			$i++;
-      		foreach ($row as $key => $value) {
-				if ($oper == "average") {
-					$key = substr($key, 1, -1);
-					preg_match( '!\(([^\)]+)\)!', $key, $match);
-					$key = $match[1];
-				}
-        		echo str_pad($key,11," ");
-				echo " | ";
+while($row = $result->fetch_assoc()) {
+	if ($i == 0) {
+		$i++;
+   		foreach ($row as $key => $value) {
+			if ($oper == "average") {
+				$key = substr($key, 1, -1);
+				preg_match( '!\(([^\)]+)\)!', $key, $match);
+				$key = $match[1];
 			}
-		}
-		echo ("\n");
-		foreach ($row as $value) {
-			echo str_pad($value,15," ");
-			echo " | ";
+       		$csvcont = $csvcont . $key;
+			$csvcont = $csvcont . ",";
 		}
 	}
-	die();
+	$csvcont = $csvcont . "\n";
+	foreach ($row as $value) {
+		$csvcont = $csvcont . $value;
+		$csvcont . ",";
+	}
 }
+
+//Write to csv file
+if ($args == "" ) {
+	$file = $oper . ".csv";
+} else {
+	$file = $oper . "_" . $args . ".csv";
+}
+file_put_contents("./csv/" . $file, $csvcont);
+
+// build $output string
+$i = 0;
+while($row = $result->fetch_assoc()) {
+	if ($i == 0) {
+		$i++;
+   		foreach ($row as $key => $value) {
+			if ($oper == "average") {
+				$key = substr($key, 1, -1);
+				preg_match( '!\(([^\)]+)\)!', $key, $match);
+				$key = $match[1];
+			}
+       		$output = $output . str_pad($key,11," ");
+			$output = $output . " | ";
+		}
+	}
+	$output = $output . "\n";
+	foreach ($row as $value) {
+		$output = $output . str_pad($value,15," ");
+		$output . " | ";
+	}
+}
+
+// JSON Formatted output
+echo	"{\"attachments\": [{";
+echo 		"\"pretext\": \"" . $output . "\"";
+echo	"},{";
+echo		"\"fallback\": \"HTML Table\",";
+echo		"\"color\": \"#0066ff\",";
+echo 		"\"title\": \"Webpage Table\",";
+echo 		"\"title_link\": \"" . $domain . "html-table.php?oper=" . $oper . "&args=" . $args . "\"";
+echo 	"}, {";
+echo 		"\"fallback\": \"CSV File\",";
+echo 		"\"color\": \"#36a64f\",";
+echo 		"\"title\": \"CSV File\",";
+echo 		"\"title_link\": \"" . $domain . "csv/" . $file . "\"";
+echo 	"}]}";
+
+die();
+
 ?>
