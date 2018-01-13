@@ -12,7 +12,7 @@ $webhook = "https://hooks.slack.com/XXXXXX";
 
 // Grab some of the values from the slash command, create vars for post back to Slack
 $command = $_POST['command'];
-$username = $_POST['user_name'];
+$slackname = $_POST['user_name'];
 $text = $_POST['text'];
 $token = $_POST['token'];
 
@@ -144,7 +144,7 @@ while($row = $result->fetch_assoc()) {
 // Build JSON from arrays
 $data = array(
 	"username" => "Scouting Database",
-	"channel" => "@" . $username,
+	"channel" => "@" . $slackname,
 	"text" => $output,
 	"attachments" => array(
 		array(
