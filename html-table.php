@@ -49,7 +49,8 @@ if ($result == "") {
 }
 
 echo "Result of:";
-echo $oper . $args;
+echo "<br>\n";
+echo $oper . " " . $args;
 
 // Found at:
 // https://stackoverflow.com/a/37574368
