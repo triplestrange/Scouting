@@ -8,7 +8,7 @@
 $domain = "http://domain.site/scouting/";
 
 // URL to your Slack Incoming Webhook
-$webhook = "https://yourcompany.slack.com/XXXXXX";
+$webhook = "https://hooks.slack.com/XXXXXX";
 
 // Grab some of the values from the slash command, create vars for post back to Slack
 $command = $_POST['command'];
@@ -141,6 +141,28 @@ while($row = $result->fetch_assoc()) {
 	}
 }
 
+// Build JSON from arrays
+$data = array(
+	"username" => "Scouting Database",
+	"channel" => "@" . $username,
+	"text" => $output,
+	"attachments" => array(
+		array(
+			"fallback" => "HTML Table",
+			"color" => "#0066ff",
+			"title" => "Webpage Table",
+			"title_link" => $domain . "html-table.php?oper=" . $oper . "&args=" . $args
+		), array(
+			"fallback" => "CSV Table",
+			"color" => "#36a64f",
+			"title" => "CSV File",
+			"title_link" => $domain . "csv/" . $file
+		)
+	)
+);
+$payload = json_encode($data);
+
+/*
 // JSON Formatted output
 $payload = "{\"channel\":\"@" . $username . "\", \"username\":\"Scouting Database\", \"text\": \"" . $output . "\", \"attachments\": [{";
 $payload = $payload . "\"fallback\": \"HTML Table\",";
@@ -153,6 +175,7 @@ $payload = $payload . "\"color\": \"#36a64f\",";
 $payload = $payload . "\"title\": \"CSV File\",";
 $payload = $payload . "\"title_link\": \"" . $domain . "csv/" . $file . "\"";
 $payload = $payload . "}]}";
+*/
 
 // Issue cURL command
 $slack_call = curl_init($webhook);
