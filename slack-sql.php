@@ -105,6 +105,7 @@ while($row = $result->fetch_assoc()) {
 		}
 	}
 	$csvcont = $csvcont . "\n";
+	$output = $output . "\n";
 	foreach ($row as $value) {
 		$csvcont = $csvcont . $value;
 		$csvcont . ",";
