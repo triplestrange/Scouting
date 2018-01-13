@@ -86,7 +86,7 @@ if ($result == "") {
 	die("No data found :(");
 }
 
-// create csv contents
+// create csv and output text contents
 $i = 0;
 $csvcont = "";
 while($row = $result->fetch_assoc()) {
@@ -100,12 +100,16 @@ while($row = $result->fetch_assoc()) {
 			}
        		$csvcont = $csvcont . $key;
 			$csvcont = $csvcont . ",";
+			$output = $output . str_pad($key,11," ");
+			$output = $output . " | ";
 		}
 	}
 	$csvcont = $csvcont . "\n";
 	foreach ($row as $value) {
 		$csvcont = $csvcont . $value;
 		$csvcont . ",";
+		$output = $output . str_pad($value,15," ");
+		$output . " | ";
 	}
 }
 
@@ -117,29 +121,6 @@ if ($args == "" ) {
 }
 $filewrite = "./csv/" . $file;
 file_put_contents($filewrite, $csvcont);
-
-// build $output string
-$i = 0;
-$output = "";
-while($row = $result->fetch_assoc()) {
-	if ($i == 0) {
-		$i++;
-   		foreach ($row as $key => $value) {
-			if ($oper == "average") {
-				$key = substr($key, 1, -1);
-				preg_match( '!\(([^\)]+)\)!', $key, $match);
-				$key = $match[1];
-			}
-       		$output = $output . str_pad($key,11," ");
-			$output = $output . " | ";
-		}
-	}
-	$output = $output . "\n";
-	foreach ($row as $value) {
-		$output = $output . str_pad($value,15," ");
-		$output . " | ";
-	}
-}
 
 // Build JSON from arrays
 $data = array(
