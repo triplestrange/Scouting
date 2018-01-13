@@ -98,19 +98,19 @@ while($row = $result->fetch_assoc()) {
 				preg_match( '!\(([^\)]+)\)!', $key, $match);
 				$key = $match[1];
 			}
-       		$csvcont = $csvcont . $key;
-			$csvcont = $csvcont . ",";
-			$output = $output . str_pad($key,11," ");
-			$output = $output . " | ";
+       		$csvcont .= $key;
+			$csvcont .= ",";
+			$output .= str_pad($key,11," ");
+			$output .= " | ";
 		}
 	}
-	$csvcont = $csvcont . "\n";
-	$output = $output . "\n";
+	$csvcont .= "\n";
+	$output .= "\n";
 	foreach ($row as $value) {
-		$csvcont = $csvcont . $value;
-		$csvcont . ",";
-		$output = $output . str_pad($value,15," ");
-		$output . " | ";
+		$csvcont .= $value;
+		$csvcont .= ",";
+		$output .= str_pad($value,15," ");
+		$output .= " | ";
 	}
 }
 
