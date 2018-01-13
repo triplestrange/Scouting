@@ -53,6 +53,7 @@ echo $oper . $args;
 
 // Found at:
 // https://stackoverflow.com/a/37574368
+echo "<table border=1>";
 $i = 0;
 while($row = $result->fetch_assoc())
 {
