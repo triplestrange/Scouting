@@ -7,8 +7,12 @@
 // Must include the path to the scouting app scripts and a trailing slash
 $domain = "http://domain.site/scouting/";
 
+// URL to your Slack Incoming Webhook
+$webhook = "https://yourcompany.slack.com/XXXXXX";
+
 // Grab some of the values from the slash command, create vars for post back to Slack
 $command = $_POST['command'];
+$username = $_POST['user_name'];
 $text = $_POST['text'];
 $token = $_POST['token'];
 
@@ -84,6 +88,7 @@ if ($result == "") {
 
 // create csv contents
 $i = 0;
+$csvcont = "";
 while($row = $result->fetch_assoc()) {
 	if ($i == 0) {
 		$i++;
@@ -110,10 +115,12 @@ if ($args == "" ) {
 } else {
 	$file = $oper . "_" . $args . ".csv";
 }
-file_put_contents("./csv/" . $file, $csvcont);
+$filewrite = "./csv/" . $file;
+file_put_contents($filewrite, $csvcont);
 
 // build $output string
 $i = 0;
+$output = "";
 while($row = $result->fetch_assoc()) {
 	if ($i == 0) {
 		$i++;
@@ -135,19 +142,30 @@ while($row = $result->fetch_assoc()) {
 }
 
 // JSON Formatted output
-echo	"{\"attachments\": [{";
-echo 		"\"pretext\": \"" . $output . "\"";
-echo	"},{";
-echo		"\"fallback\": \"HTML Table\",";
-echo		"\"color\": \"#0066ff\",";
-echo 		"\"title\": \"Webpage Table\",";
-echo 		"\"title_link\": \"" . $domain . "html-table.php?oper=" . $oper . "&args=" . $args . "\"";
-echo 	"}, {";
-echo 		"\"fallback\": \"CSV File\",";
-echo 		"\"color\": \"#36a64f\",";
-echo 		"\"title\": \"CSV File\",";
-echo 		"\"title_link\": \"" . $domain . "csv/" . $file . "\"";
-echo 	"}]}";
+$payload = "{\"channel\":\"@" . $username . "\", \"username\":\"Scouting Database\", \"text\": \"" . $output . "\", \"attachments\": [{";
+$payload = $payload . "\"fallback\": \"HTML Table\",";
+$payload = $payload . "\"color\": \"#0066ff\",";
+$payload = $payload . "\"title\": \"Webpage Table\",";
+$payload = $payload . "\"title_link\": \"" . $domain . "html-table.php?oper=" . $oper . "&args=" . $args . "\"";
+$payload = $payload . "}, {";
+$payload = $payload . "\"fallback\": \"CSV File\",";
+$payload = $payload . "\"color\": \"#36a64f\",";
+$payload = $payload . "\"title\": \"CSV File\",";
+$payload = $payload . "\"title_link\": \"" . $domain . "csv/" . $file . "\"";
+$payload = $payload . "}]}";
+
+// Issue cURL command
+$slack_call = curl_init($webhook);
+curl_setopt($slack_call, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($slack_call, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($slack_call, CURLOPT_CRLF, true);
+curl_setopt($slack_call, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($slack_call, CURLOPT_HTTPHEADER, array(
+    "Content-Type: application/json",
+    "Content-Length: " . strlen($payload))
+);
+curl_exec($slack_call);
+curl_close($slack_call);
 
 die();
 
