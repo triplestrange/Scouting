@@ -161,6 +161,7 @@ $data = array(
 	)
 );
 $payload = json_encode($data);
+$payload = "payload=" . $payload;
 
 /*
 // JSON Formatted output
