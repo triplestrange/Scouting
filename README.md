@@ -30,6 +30,6 @@
 
 - Manually specify a query for the database
 
-### CSV Exporting
+## HTML Table and CSV Files
 
-- Append "csv" to the end of any command to have it output as CSV formatted text
+The included `html-table.php` file will be linked to by the returned text of the slack integration bot. It is capable of generating HTML tables on the fly to easily display data. CSV files will also be generated and stored in the `csv` folder, with a download link included in the slack message. The owner of the `csv` folder must be changed to your web server user server side before the csv files can be created.
