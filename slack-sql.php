@@ -161,22 +161,6 @@ $data = array(
 	)
 );
 $payload = json_encode($data);
-$payload = "payload=" . $payload;
-
-/*
-// JSON Formatted output
-$payload = "{\"channel\":\"@" . $username . "\", \"username\":\"Scouting Database\", \"text\": \"" . $output . "\", \"attachments\": [{";
-$payload = $payload . "\"fallback\": \"HTML Table\",";
-$payload = $payload . "\"color\": \"#0066ff\",";
-$payload = $payload . "\"title\": \"Webpage Table\",";
-$payload = $payload . "\"title_link\": \"" . $domain . "html-table.php?oper=" . $oper . "&args=" . $args . "\"";
-$payload = $payload . "}, {";
-$payload = $payload . "\"fallback\": \"CSV File\",";
-$payload = $payload . "\"color\": \"#36a64f\",";
-$payload = $payload . "\"title\": \"CSV File\",";
-$payload = $payload . "\"title_link\": \"" . $domain . "csv/" . $file . "\"";
-$payload = $payload . "}]}";
-*/
 
 // Issue cURL command
 $slack_call = curl_init($webhook);
@@ -188,6 +172,7 @@ curl_setopt($slack_call, CURLOPT_HTTPHEADER, array(
     "Content-Type: application/json",
     "Content-Length: " . strlen($payload))
 );
+
 curl_exec($slack_call);
 curl_close($slack_call);
 
