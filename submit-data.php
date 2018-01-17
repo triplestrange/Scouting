@@ -48,6 +48,10 @@ $teleScale = preg_replace("/[^0-9,.]/", "", $_POST['teleScale']);
 // Cubes returned
 $returnCubes = preg_replace("/[^0-9,.]/", "", $_POST['returnCubes']);
 
+// Yellow/Red cards
+$yellowCards = preg_replace("/[^0-9,.]/", "", $_POST['yellowCards']);
+$redCards = preg_replace("/[^0-9,.]/", "", $_POST['redCards']);
+
 // Was levitate used
 $levitate = $_POST['levitate'];
 
@@ -68,7 +72,9 @@ teleSwitch INT,
 teleScale INT,
 returnCubes INT,
 levitate TEXT,
-endPos TEXT
+endPos TEXT,
+yellowCards INT,
+redCards INT
 )";
 
 // Create table for match if necessary
@@ -89,7 +95,9 @@ teleSwitch,
 teleScale,
 returnCubes,
 levitate,
-endPos
+endPos,
+yellowCards,
+redCards
 ) ". "VALUES(
 '$teamNum',
 '$startPos',
@@ -100,7 +108,9 @@ endPos
 '$teleScale',
 '$returnCubes',
 '$levitate',
-'$endPos'
+'$endPos',
+'$yellowCards',
+'$redCards'
 )";
 
 // Write data to table
@@ -122,7 +132,9 @@ $team_table = "CREATE TABLE IF NOT EXISTS `team_".$teamNum."` (
 	teleScale INT,
 	returnCubes INT,
 	levitate TEXT,
-	endPos TEXT
+	endPos TEXT,
+	yellowCards INT,
+	redCards INT
 	)";
 	
 	// Create table for match if necessary
@@ -143,7 +155,9 @@ $team_table = "CREATE TABLE IF NOT EXISTS `team_".$teamNum."` (
 	teleScale,
 	returnCubes,
 	levitate,
-	endPos
+	endPos,
+	yellowCards,
+	redCards
 	) ". "VALUES(
 	'$matchNum',
 	'$startPos',
@@ -154,7 +168,9 @@ $team_table = "CREATE TABLE IF NOT EXISTS `team_".$teamNum."` (
 	'$teleScale',
 	'$returnCubes',
 	'$levitate',
-	'$endPos'
+	'$endPos',
+	'$yellowCards',
+	'$redCards'
 	)";
 	
 	// Write data to table

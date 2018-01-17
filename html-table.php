@@ -62,6 +62,7 @@ while($row = $result->fetch_assoc())
       $i++;
       echo "<tr>";
       foreach ($row as $key => $value) {
+		// Filter key value to make it more readable
 		if ($oper == "average") {
 			$key = substr($key, 1, -1);
 			preg_match( '!\(([^\)]+)\)!', $key, $match);
