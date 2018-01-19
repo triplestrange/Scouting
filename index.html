@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="manifest" href="manifest.json">
+	<link rel="manifest" href="offline.appcache">
 	<link rel="stylesheet" href="style.css">
+	
 	<title>Team 1533 Scouting App</title>
 	
 	<!-- iOS Safari Web Clip config (add to springboard) -->
@@ -16,8 +21,14 @@
 		<!-- <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
 	<!-- end iOS config -->
 
-	<link rel="manifest" href="manifest.json">	
-	
+	<script language="javascript">
+		var webappCache = window.applicationCache;
+		function updateCache() {
+    		webappCache.swapCache();
+		}
+		webappCache.addEventListener("updateready", updateCache, false);
+	</script>
+
 </head>
 <body>
 
