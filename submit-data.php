@@ -1,5 +1,7 @@
 <?php
 
+header( "refresh:3;url=index.html" );
+
 $servername = "localhost";
 $username = "username";
 $password = "password";
