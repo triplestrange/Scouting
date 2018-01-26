@@ -53,7 +53,7 @@
 
 <fieldset id="starting-numbers">
   <fieldset>
-	<legend>Numbers</legend>
+	<legend><h3>Numbers</h3></legend>
       <p><span>
         <label for="team-num">Team Number: </label>
         <input type="text" name="teamNum" required>
@@ -68,10 +68,10 @@
 	</fieldset>
 
 	<fieldset id="starting-pos">
-		<fieldset>
-			
-	<legend>Starting Position</legend>
-	<p><span>
+	<fieldset>	
+	<legend><h3>Starting Position</h3></legend>
+		<p>
+		<span>
 	    <input type="radio" name="startPos" value="red_1" id="red1">
 	    <label for="red1"> Red 1</label> 
 	    ---
@@ -99,8 +99,9 @@
 	<h2>Autonomous:</h2>
 
 	<fieldset id="automove">
-		<fieldset>
-	<legend>Autonomous Movement</legend>
+	<fieldset>
+		
+	<legend><h3>Autonomous Movement</h3></legend>
 		<input type="hidden" name="autoLine" value="false">
 		<label for="autoLine">Robot across Autonomous Movement Line: </label><input type="checkbox" name="autoLine" id="autoLine" value="true">
 	</fieldset>
@@ -108,14 +109,16 @@
 
 	<fieldset id="auto-switch">
 	<fieldset>
-	<legend>Autonomous Switch Cubes</legend>
+		
+	<legend><h3>Autonomous Switch Cubes</h3></legend>
 		Power Cubes on switch: <input type="number" name="autoSwitch" min="0" value="0">
 	</fieldset>
 	</fieldset>
 	
 	<fieldset id="auto-scale">
-		<fieldset>
-	<legend>Autonomous Scale Cubes</legend>
+	<fieldset>
+		
+	<legend><h3>Autonomous Scale Cubes</h3></legend>
 		Power Cubes on scale: <input type="number" name="autoScale" min="0" value="0">
 	</fieldset>
 	</fieldset>
@@ -124,21 +127,22 @@
 
 	<fieldset id="tele-switch">
 	<fieldset>
-	<legend>Switch Cubes</legend>
+	<legend><h3>Switch Cubes</h3></legend>
 		Power Cubes on switch: <input type="number" name="teleSwitch" min="0" value="0">
 	</fieldset>
 	</fieldset>
 	
 	<fieldset id="tele-scale">
 	<fieldset>
-	<legend>Scale Cubes</legend>
+		
+	<legend><h3>Scale Cubes</h3></legend>
 		Power Cubes on scale: <input type="number" name="teleScale" min="0" value="0">
 	</fieldset>
 	</fieldset>
 	
 	<fieldset id="power-up">
 	<fieldset>
-	<legend>Power Ups</legend>
+	<legend><h3>Power Ups</h3></legend>
 		Power Cubes returned: <input type="number" name="returnCubes" min="0" value="0">
 		<span>
 			<input type="hidden" name="levitate" value="false">
@@ -149,7 +153,8 @@
 	
 	<fieldset id="cards">
 		<fieldset>
-		<legend>Cards</legend>
+			
+		<legend><h3>Cards</h3></legend>
 			<span>
 				Yellow Cards: <input type="number" name="yellowCards" min="0" value="0">
 			</span>
@@ -170,7 +175,7 @@
 
 	<fieldset>
 		<fieldset>
-		<legend>Additional Notes</legend>
+		<legend><h3>Additional Notes</h3></legend>
 		<textarea name="notes" id="notes" cols="40" rows="5"></textarea>
 	</fieldset>
 	</fieldset>
@@ -178,7 +183,7 @@
   <input type="submit" value="Submit Data" >
 
 </form>
--moz-border-radius: 6px;</div>
+</div>
 </body>
 	</html>
 </body>
