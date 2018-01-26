@@ -1,135 +1,185 @@
-<!DOCTYPE html>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>1533 Scouting</title>
+</head>
+
+<body bgcolor= "#2B36FF"><!DOCTYPE html>
 <html lang="en">
 <head>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="style.css">
+	
+	<link rel="manifest" href="../../../AppData/Local/Temp/Adobe/Dreamweaver CC 2018/manifest.json">
+	<link rel="manifest" href="../../../AppData/Local/Temp/Adobe/Dreamweaver CC 2018/offline.appcache">
+	<link rel="stylesheet" href="../../../AppData/Local/Temp/Adobe/Dreamweaver CC 2018/style.css">
+	
 	<title>Team 1533 Scouting App</title>
+	
+	<link rel="stylesheet" href="styles/mobile.css" 
+       media="only screen and (max-device-width: 480px)">
+	<!-- iOS Safari Web Clip config (add to springboard) -->
+		<meta name="apple-mobile-web-app-title" content="StrangeScout">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="apple-touch-icon" sizes="180x180" href="../../../AppData/Local/Temp/Adobe/Dreamweaver CC 2018/icon/icon-180px.png">
+		<link rel="apple-touch-icon" sizes="167x167" href="../../../AppData/Local/Temp/Adobe/Dreamweaver CC 2018/icon/icon-167px.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="../../../AppData/Local/Temp/Adobe/Dreamweaver CC 2018/icon/icon-152px.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="../../../AppData/Local/Temp/Adobe/Dreamweaver CC 2018/icon/icon-120px.png">
+		<!-- <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
+	<!-- end iOS config -->
+
+	<script language="javascript">
+		var webappCache = window.applicationCache;
+		function updateCache() {
+    		webappCache.swapCache();
+		}
+		webappCache.addEventListener("updateready", updateCache, false);
+	</script>
+
 </head>
 <body>
+<div id = "shell" class = "container-fluid">
+<form action="../../../AppData/Local/Temp/Adobe/Dreamweaver CC 2018/submit-data.php" method="post" accept-charset="utf-8">
 
-<form action="submit-data.php" method="post" accept-charset="utf-8">
+	<h1>FIRST Power Up Scouting Form</h1>
 
-	<h1>Scouting Form</h1>
+	
+	<br>
+	<br>
+	<br>
 
-	<h2>Pre-Match:</h2>
-
-	<fieldset id="starting-numbers">
+<fieldset id="starting-numbers">
+  <fieldset>
 	<legend>Numbers</legend>
-		<span>
-			<label for="team-num">Team Number: </label><input type="text" name="teamNum">
-		</span>
-		<span>
-			<label for="match-num">Match Number: </label><input type="text" name="matchNum">
-		</span>
+      <p><span>
+        <label for="team-num">Team Number: </label>
+        <input type="text" name="teamNum" required>
+      </span>
+ 
+		  <span>
+	      <label for="match-num">Match Number: </label>
+		    <input type="text" name="matchNum" required>
+      	  </span>
+		</p>
+	</fieldset>
 	</fieldset>
 
 	<fieldset id="starting-pos">
+		<fieldset>
+			
 	<legend>Starting Position</legend>
-	<input type="hidden" name="startPos" value="unknown">
-		<span>
-			<input type="radio" name="startPos" value="red_1" id="red1"><label for="red1"> Red 1</label> ---
-			<label for="blue1">Blue 1 </label><input type="radio" name="startPos" value="blue_1" id="blue1">
-		</span>
-		<span>
-			<input type="radio" name="startPos" value="red_2" id="red2"><label for="red2"> Red 2</label> ---
-			<label for="blue2">Blue 2 </label><input type="radio" name="startPos" value="blue_2" id="blue2">
-		</span>
-	</fieldset>
+	<p><span>
+	    <input type="radio" name="startPos" value="red_1" id="red1">
+	    <label for="red1"> Red 1</label> 
+	    ---
+	    <label for="blue1">Blue 1 </label>
+	    <input type="radio" name="startPos" value="blue_1" id="blue1">
+      </span></p>
+
+	  <p>
+	  <span>
+	    <input type="radio" name="startPos" value="red_2" id="red2">
+	    <label for="red2"> Red 2</label> 
+	    ---
+	    <label for="blue2">Blue 2 </label>
+	    <input type="radio" name="startPos" value="blue_2" id="blue2">
+      </span>	  </p>
+	<p><span>	
+	  <input type="radio" name="startPos" value="red_3" id="red3">
+	  <label for="red3"> Red 3</label> 
+	  ---
+	  <label for="blue3">Blue 3 </label>
+	  <input type="radio" name="startPos" value="blue_3" id="blue3">
+	  </span></p>
+	</fieldset></fieldset>
 
 	<h2>Autonomous:</h2>
 
-	<fieldset id="jewel">
-	<legend>Jewel</legend>
-		<select name="jewelMov" id="auto-jewel">
-			<option value="none">No jewel removed</option>
-			<option value="incorrect">Incorrect jewel removed</option>
-			<option value="correct">Correct jewel removed</option>
-		</select>
+	<fieldset id="automove">
+		<fieldset>
+	<legend>Autonomous Movement</legend>
+		<input type="hidden" name="autoLine" value="false">
+		<label for="autoLine">Robot across Autonomous Movement Line: </label><input type="checkbox" name="autoLine" id="autoLine" value="true">
+	</fieldset>
 	</fieldset>
 
-	<fieldset id="auto-glyph">
-	<legend>Autonomous Glyph Count</legend>
+	<fieldset id="auto-switch">
+	<fieldset>
+	<legend>Autonomous Switch Cubes</legend>
+		Power Cubes on switch: <input type="number" name="autoSwitch" min="0" value="0">
+	</fieldset>
+	</fieldset>
+	
+	<fieldset id="auto-scale">
+		<fieldset>
+	<legend>Autonomous Scale Cubes</legend>
+		Power Cubes on scale: <input type="number" name="autoScale" min="0" value="0">
+	</fieldset>
+	</fieldset>
+
+<h2>Teleop:</h2>
+
+	<fieldset id="tele-switch">
+	<fieldset>
+	<legend>Switch Cubes</legend>
+		Power Cubes on switch: <input type="number" name="teleSwitch" min="0" value="0">
+	</fieldset>
+	</fieldset>
+	
+	<fieldset id="tele-scale">
+	<fieldset>
+	<legend>Scale Cubes</legend>
+		Power Cubes on scale: <input type="number" name="teleScale" min="0" value="0">
+	</fieldset>
+	</fieldset>
+	
+	<fieldset id="power-up">
+	<fieldset>
+	<legend>Power Ups</legend>
+		Power Cubes returned: <input type="number" name="returnCubes" min="0" value="0">
 		<span>
-			Number of Glyphs: <input type="number" name="glyphA" min="0" value="0">
-		</span>
-		<span>
-			<input type="hidden" name="cryptoKey" value="false">
-			<label for="cryptoKey">Glyph in Cryptobox Key: </label><input type="checkbox" name="cryptoKey" id="cryptoKey" value="true">
-		</span>
-		<span>
-			<input type="hidden" name="safeZone" value="false">
-			<label for="safeZone">Parked in Safe Zone: </label><input type="checkbox" name="safeZone" id="safeZone" value="true">
+			<input type="hidden" name="levitate" value="false">
+			<label for="levitate">Robot used levitate: </label><input type="checkbox" name="levitate" id="levitate" value="true">
 		</span>
 	</fieldset>
-
-	<h2>Teleop:</h2>
-
-	<fieldset id="tele-glyphs">
-	<legend>Teleop Glyphs</legend>
-		<input type="number" name="glyphT" min="0" value="0">
 	</fieldset>
-
-	<fieldset id="teleop-cryptobox">
-	<legend>Cryptobox</legend>
-	<div id="crypto-rows">
-		Completed Cryptobox Rows: <select name="cryptoR" id="crypto-rows-select">
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-		</select>
-	</div>
-	<div id="crypto-columns">
-		Completed Cryptobox Columns: <select name="cryptoC" id="crypto-columns-select">
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-		</select>
-	</div>
-	<div id="ciphers">
-		Completed Ciphers: <select name="ciphers" id="ciphers-select">
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-		</select>
-	</div>
+	
+	<fieldset id="cards">
+		<fieldset>
+		<legend>Cards</legend>
+			<span>
+				Yellow Cards: <input type="number" name="yellowCards" min="0" value="0">
+			</span>
+			<span>
+				Red Cards: <input type="number" name="redCards" min="0" value="0">
+			</span>
+		</fieldset>
 	</fieldset>
-
 	<h2>End Game:</h2>
 
-	<fieldset id="relic">
-	<legend>Relics</legend>
-		<div id="relicPos">
-			Relic Position: <select name="relicPos" id="relicPos-select">
-				<option value="0">None</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-			</select>
-		</div>
-	<span>
-		<input type="hidden" name="relicStand" value="false">
-		<label for="relicStand">Relic Standing: </label><input type="checkbox" name="relicStand" id="relicStand" value="true">
-	</span>
-	<span>
-		<input type="hidden" name="platform" value="false">
-		<label for="platform">Robot on Balancing Stone: </label><input type="checkbox" name="platform" id="platform" value="true">
-	</span>
+	<fieldset>
+		Robot end position: <select name="endPos" id="endPos">
+			<option value="none">Neither</option>
+			<option value="park">Parked</option>
+			<option value="climb">Climbed</option>
+		</select>
 	</fieldset>
 
-	<input type="submit" value="Submit Data">
+	<fieldset>
+		<fieldset>
+		<legend>Additional Notes</legend>
+		<textarea name="notes" id="notes" cols="40" rows="5"></textarea>
+	</fieldset>
+	</fieldset>
+	
+  <input type="submit" value="Submit Data" >
 
 </form>
-
+-moz-border-radius: 6px;</div>
+</body>
+	</html>
 </body>
 </html>
